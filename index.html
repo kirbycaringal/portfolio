@@ -126,9 +126,9 @@
 
   /* STATS */
   .stats-bar{background:var(--bg2);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);padding:2.5rem 3rem;position:relative;z-index:1}
-  .stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2rem}
-  .stat-box{text-align:center}
-  .stat-n{font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .stats-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:2rem 1.5rem}
+  .stat-box{flex:1 1 130px;max-width:200px;text-align:center}
+  .stat-n{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,6vw,2.6rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap}
   .stat-l{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.4rem}
 
   /* MY WORKS */
@@ -234,6 +234,33 @@
   .edu-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.1em;padding:.22rem .6rem;border-radius:100px;border:1px solid rgba(0,255,224,.25);color:var(--cyan);background:rgba(0,255,224,.05)}
   .edu-badge.grad{border-color:rgba(255,209,102,.35);color:var(--gold);background:rgba(255,209,102,.06)}
 
+  /* CERTIFICATES */
+  #certificates{padding:5rem 3rem;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+  .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem}
+  .cert-card{border-radius:14px;overflow:hidden;border:1px solid var(--glass-border);background:var(--glass);cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s}
+  .cert-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.45),0 0 20px rgba(0,255,224,.05);border-color:rgba(255,255,255,.14)}
+  .cert-thumb{aspect-ratio:4/3;background:#eceef2;padding:.9rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .cert-thumb img{width:100%;height:100%;object-fit:contain;display:block;border-radius:4px;transition:transform .4s cubic-bezier(.23,1,.32,1)}
+  .cert-card:hover .cert-thumb img{transform:scale(1.03)}
+  .cert-zoom{position:absolute;top:.6rem;right:.6rem;width:28px;height:28px;border-radius:50%;background:rgba(6,6,8,.75);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--cyan);opacity:0;transition:opacity .25s;backdrop-filter:blur(6px)}
+  .cert-card:hover .cert-zoom{opacity:1}
+  .cert-zoom svg{width:14px;height:14px}
+  .cert-info{padding:1rem 1.2rem 1.2rem}
+  .cert-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:.35rem;line-height:1.3}
+  .cert-issuer{font-size:.78rem;color:var(--muted);margin-bottom:.6rem}
+  .cert-verify{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:color .2s,gap .2s}
+  .cert-verify svg{width:11px;height:11px;flex-shrink:0;transition:transform .2s}
+  .cert-verify:hover{color:var(--white);gap:.5rem}
+  .cert-verify:hover svg{transform:translate(1px,-1px)}
+
+  /* CERT LIGHTBOX */
+  .cert-lightbox{position:fixed;inset:0;background:rgba(6,6,8,.92);backdrop-filter:blur(10px);z-index:200;display:none;align-items:center;justify-content:center;padding:3rem;cursor:zoom-out}
+  .cert-lightbox.open{display:flex}
+  .cert-lightbox img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 30px 100px rgba(0,0,0,.6)}
+  .cert-lb-close{position:absolute;top:1.5rem;right:1.5rem;width:42px;height:42px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--white);cursor:pointer}
+  .cert-lb-close:hover{border-color:var(--cyan);color:var(--cyan)}
+  .cert-lb-close svg{width:18px;height:18px}
+
   /* CONTACT */
   #contact{padding:8rem 3rem;text-align:center;position:relative;z-index:1}
   .cname{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5.5rem);line-height:1;letter-spacing:-.04em;margin-bottom:.6rem}
@@ -269,13 +296,16 @@
     #hero{grid-template-columns:1fr;padding:8rem 1.5rem 4rem;gap:3rem}
     .hero-r{order:-1}.prof-frame{width:min(260px,90%)}
     #about{grid-template-columns:1fr;padding:4rem 1.5rem;gap:3rem}
-    .stats-inner{grid-template-columns:repeat(3,1fr)}
+    .stats-inner{gap:1.6rem 1.2rem}
+    .stats-bar{padding:2rem 1.5rem}
     .pgrid .pw,.pgrid .pn,.pgrid .pt{grid-column:1/-1}
     .comm-inner{grid-template-columns:1fr;padding:4rem 1.5rem;gap:3rem}
     .lgrid,.svc-grid{grid-template-columns:1fr 1fr;gap:1rem}
     .tgroups{grid-template-columns:1fr 1fr;gap:1.5rem}
     .lgrid,.pgallery{grid-template-columns:repeat(2,1fr)}
-    #myworks,#education,#services,#tools,#community,#contact{padding:4rem 1.5rem}
+    #myworks,#education,#certificates,#services,#tools,#community,#contact{padding:4rem 1.5rem}
+    .cert-grid{grid-template-columns:1fr 1fr}
+    .cert-lightbox{padding:1.5rem}
     .edu-it{grid-template-columns:1fr;gap:.5rem}.edu-it::before{display:none}.edu-yr{text-align:left;padding-right:0}.edu-bd{padding-left:0}
     footer{flex-direction:column;gap:.8rem;text-align:center;padding:1.5rem}
     .nav-status{font-size:.56rem}
@@ -284,8 +314,9 @@
   @media(max-width:600px){
     .lgrid,.svc-grid{grid-template-columns:1fr}
     .tgroups{grid-template-columns:1fr}
-    .stats-inner{grid-template-columns:repeat(2,1fr)}
+    .stat-box{flex:1 1 40%}
     .lgrid,.pgallery{grid-template-columns:1fr}
+    .cert-grid{grid-template-columns:1fr}
     .info-grid{grid-template-columns:1fr}
     .crow{flex-direction:column;align-items:stretch}
     .clink{justify-content:center}
@@ -299,6 +330,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#myworks" onclick="closeMobile()">My Works</a>
+  <a href="#certificates" onclick="closeMobile()">Certificates</a>
   <a href="#community" onclick="closeMobile()">Community</a>
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
@@ -310,6 +342,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#myworks">My Works</a></li>
+    <li><a href="#certificates">Certificates</a></li>
     <li><a href="#community">Community</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -414,7 +447,7 @@
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-box reveal"><div class="stat-n" data-target="45" data-suffix="K+">0</div><div class="stat-l">Community Managed</div></div>
-    <div class="stat-box reveal d1"><div class="stat-n" data-target="480" data-suffix="K">0</div><div class="stat-l">Peak Engagements</div></div>
+    <div class="stat-box reveal d1"><div class="stat-n" data-target="490" data-suffix="K">0</div><div class="stat-l">Peak Engagements</div></div>
     <div class="stat-box reveal d2"><div class="stat-n" data-target="100" data-suffix="K+">0</div><div class="stat-l">Avg Reach / Post</div></div>
     <div class="stat-box reveal d3"><div class="stat-n" data-target="4" data-suffix="+">0</div><div class="stat-l">Years Experience</div></div>
     <div class="stat-box reveal d4"><div class="stat-n" data-target="2" data-suffix="">0</div><div class="stat-l">Dev Projects Built</div></div>
@@ -424,30 +457,7 @@
 <!-- MY WORKS -->
 <section id="myworks">
 
-  <!-- 1. Projects & Builds — photo only, 16:9 -->
-  <div class="works-sub-head reveal">
-    <div class="sec-lbl">Portfolio</div>
-    <h2>Projects &amp; <span class="ac">Builds</span></h2>
-  </div>
-  <div class="pgrid">
-    <div class="pcard pw reveal">
-      <div class="piw">
-        <img class="pci" src="images/portal.png" alt="School Portal"/>
-        <div class="po"></div>
-        <div class="ptyp">Web Development</div>
-      </div>
-    </div>
-    <div class="pcard pw reveal d1">
-      <div class="piw">
-        <img class="pci" src="images/page.png" alt="Fan Page"/>
-        <div class="po"></div>
-        <div class="ptyp">Social Media</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. Internship — photo only, 1:1 square -->
-  <hr class="works-divider">
+  <!-- 1. Internship — photo only, 1:1 square -->
   <div class="works-sub-head reveal">
     <div class="sec-lbl">Internship</div>
     <h2>Marketing <span class="ac">Layout Designs</span></h2>
@@ -458,7 +468,7 @@
       <div class="limg"><img src="images/summer.png" alt="Layout 1"/><div class="limg-ov"></div></div>
     </div>
     <div class="lcard reveal">
-      <div class="limg"><img src="images/ppower.png"Layout 2"/><div class="limg-ov"></div></div>
+      <div class="limg"><img src="images/ppower.png" alt="Layout 2"/><div class="limg-ov"></div></div>
     </div>
     <div class="lcard reveal">
       <div class="limg"><img src="images/eidmubarak.png" alt="Layout 3"/><div class="limg-ov"></div></div>
@@ -484,6 +494,29 @@
 
   </div>
 
+  <!-- 2. Projects & Builds — photo only, 16:9 -->
+  <hr class="works-divider">
+  <div class="works-sub-head reveal">
+    <div class="sec-lbl">Portfolio</div>
+    <h2>Projects &amp; <span class="ac">Builds</span></h2>
+  </div>
+  <div class="pgrid">
+    <div class="pcard pw reveal">
+      <div class="piw">
+        <img class="pci" src="images/portal.png" alt="School Portal"/>
+        <div class="po"></div>
+        <div class="ptyp">Web Development</div>
+      </div>
+    </div>
+    <div class="pcard pw reveal d1">
+      <div class="piw">
+        <img class="pci" src="images/page.png" alt="Fan Page"/>
+        <div class="po"></div>
+        <div class="ptyp">Social Media</div>
+      </div>
+    </div>
+  </div>
+
   <!-- 3. Photography -->
   <hr class="works-divider">
   <div class="works-sub-head reveal">
@@ -494,12 +527,102 @@
   <div class="pgallery">
     <div class="ph-post"><img src="images/photo1.jpg" alt=""/></div>
           <div class="ph-post"><img src="images/photo.jpg" alt=""/></div>
-          <div class="ph-post"><img src="images/photo2.JPG" alt=""/></div>
-          <div class="ph-post"><img src="images/photo3.JPG" alt=""/></div>
+          <div class="ph-post"><img src="images/photo2.jpg" alt=""/></div>
+          <div class="ph-post"><img src="images/photo3.jpg" alt=""/></div>
           <div class="ph-post"><img src="images/photo4.jpg" alt=""/></div>
   </div>
 
 </section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="sec-lbl reveal">Certificates</div>
+  <h2 class="reveal d1">Verified <span class="am">Credentials.</span></h2>
+  <p class="reveal d1" style="margin-top:.6rem;color:var(--muted);font-size:.95rem;max-width:560px;line-height:1.75">Courses and certifications completed to sharpen my skills across web development, design, and digital marketing. Click any certificate to view it in full.</p>
+
+  <div class="cert-grid">
+    <div class="cert-card reveal" onclick="openCert('images/certificates/DMC.png')">
+      <div class="cert-thumb">
+        <img src="images/certificates/DMC.png" alt="HubSpot Digital Marketing Certificate">
+        <div class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">Digital Marketing Certified</div>
+        <div class="cert-issuer">HubSpot Academy</div>
+        <a href="https://app-na2.hubspot.com/academy/achievements/jr0qj9gf/en/1/kirby-caringal/digital-marketing-certified" target="_blank" rel="noopener" class="cert-verify" onclick="event.stopPropagation()">Verify Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+    </div>
+
+    <div class="cert-card reveal d1" onclick="openCert('images/certificates/SMC.png')">
+      <div class="cert-thumb"> 
+        <img src="images/certificates/SMC.png" alt="HubSpot Social Media Certified Certificate">
+        <div class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">Social Media Certified</div>
+        <div class="cert-issuer">HubSpot Academy</div>
+        <a href="https://app-na2.hubspot.com/academy/achievements/vjbk0f9s/en/1/kirby-caringal/social-media-certified" target="_blank" rel="noopener" class="cert-verify" onclick="event.stopPropagation()">Verify Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+    </div>
+
+    <div class="cert-card reveal d2" onclick="openCert('images/certificates/SKILLFRONT.png')">
+      <div class="cert-thumb">
+        <img src="images/certificates/SKILLFRONT.png" alt="SkillFront Certificate">
+        <div class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">Business and Entrepreneurship</div>
+        <div class="cert-issuer">SkillFront</div>
+        <a href="https://www.skillfront.com/Badges/67575201122995" target="_blank" rel="noopener" class="cert-verify" onclick="event.stopPropagation()">Verify Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+    </div>
+
+    <div class="cert-card reveal" onclick="openCert('images/certificates/JS.png')">
+      <div class="cert-thumb">
+        <img src="images/certificates/JS.png" alt="JavaScript Essentials 2 Certificate">
+        <div class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">JavaScript Essentials 2</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <a href="https://www.credly.com/badges/3ef505bb-5df3-4701-afaa-a7574ed00d97/public_url" target="_blank" rel="noopener" class="cert-verify" onclick="event.stopPropagation()">Verify Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+    </div>
+
+    <div class="cert-card reveal d1" onclick="openCert('images/certificates/HTML.png')">
+      <div class="cert-thumb">
+        <img src="images/certificates/HTML.png" alt="HTML Essentials Certificate">
+        <div class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">HTML Essentials</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <a href="https://www.credly.com/badges/59dcbbcb-8949-4f70-8ca0-9814d1d7205a/public_url" target="_blank" rel="noopener" class="cert-verify" onclick="event.stopPropagation()">Verify Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+    </div>
+
+    <div class="cert-card reveal d2" onclick="openCert('images/certificates/CSS.png')">
+      <div class="cert-thumb">
+        <img src="images/certificates/CSS.png" alt="CSS Essentials Certificate">
+        <div class="cert-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="cert-info">
+        <div class="cert-name">CSS Essentials</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <a href="https://www.credly.com/badges/dd18ad9a-21e5-4a8d-90a1-527cd775bcb8/public_url" target="_blank" rel="noopener" class="cert-verify" onclick="event.stopPropagation()">Verify Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERT LIGHTBOX -->
+<div class="cert-lightbox" id="certLightbox" onclick="closeCert(event)">
+  <div class="cert-lb-close" onclick="closeCert(event)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </div>
+  <img id="certLightboxImg" src="" alt="Certificate preview">
+</div>
+
 
 <!-- COMMUNITY -->
 <section id="community">
@@ -507,11 +630,11 @@
     <div class="reveal">
       <div class="sec-lbl">Social Media Manager · Nov 2021 – Present</div>
       <h2>Managing a<br><span class="ac">45K+ Community</span><br>Fan Page.</h2>
-      <p style="color:var(--muted);line-height:1.75;margin-top:1rem;font-size:.96rem;">Since November 2021, I've been the sole manager of a growing digital fan community of <strong style="color:var(--white);">45,000+ followers</strong> — responsible for content planning, graphic creation, video editing, caption writing, engagement monitoring, and audience analytics. My best-performing post reached <strong style="color:var(--white);">480K engagements</strong>.</p>
+      <p style="color:var(--muted);line-height:1.75;margin-top:1rem;font-size:.96rem;">Since November 2021, I've been the sole manager of a growing digital fan community of <strong style="color:var(--white);">45,000+ followers</strong> — responsible for content planning, graphic creation, video editing, caption writing, engagement monitoring, and audience analytics. My best-performing post reached <strong style="color:var(--white);">490K engagements</strong>.</p>
       <div class="eng-bars">
         <div class="eng-row"><div class="erg-head"><span class="egl">Follower Growth</span><span class="egv">45K+</span></div><div class="egbar"><div class="egfill" data-width="85"></div></div></div>
         <div class="eng-row"><div class="erg-head"><span class="egl">Avg Engagements / Post</span><span class="egv">10K–100K</span></div><div class="egbar"><div class="egfill" data-width="70"></div></div></div>
-        <div class="eng-row"><div class="erg-head"><span class="egl">Peak Post Performance</span><span class="egv">480K</span></div><div class="egbar"><div class="egfill" data-width="96"></div></div></div>
+        <div class="eng-row"><div class="erg-head"><span class="egl">Peak Post Performance</span><span class="egv">490K</span></div><div class="egbar"><div class="egfill" data-width="98"></div></div></div>
         <div class="eng-row"><div class="erg-head"><span class="egl">Posting Consistency</span><span class="egv">Daily</span></div><div class="egbar"><div class="egfill" data-width="90"></div></div></div>
       </div>
     </div>
@@ -672,6 +795,19 @@ function closeMobile() {
   mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+// CERT LIGHTBOX
+function openCert(src) {
+  document.getElementById('certLightboxImg').src = src;
+  document.getElementById('certLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCert(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('certLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCert(); });
 
 // TICKER — all white, no bright distinction needed
 const tdata = [
